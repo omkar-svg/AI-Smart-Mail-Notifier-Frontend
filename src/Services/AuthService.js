@@ -3,7 +3,7 @@ import API from "../api/axios";
  export const login = async (email, password) => {
     try {
         const body = { email, password };
-        const response = await API.post("/auth/login", body);
+        const response = await API.post("/Auth/login", body);
         console.log("Login response:", response);  // debug line
         return response.data;
     } catch (error) {
@@ -14,7 +14,7 @@ import API from "../api/axios";
 
  export const logout = async () => {
     try {
-        await API.post("/auth/logout");
+        await API.post("/Auth/logout");
     } catch (error) {
         console.error("Logout failed:", error);
         throw error;
