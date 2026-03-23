@@ -23,9 +23,9 @@ const DashboardNavbar = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const connectGmail = () => {
-    window.location.href = "https://localhost:7094/api/gmail/connect";
-  };
+const connectGmail = () => {
+  window.location.href = `${import.meta.env.VITE_API_URL}/Gmail/connect`;
+};
 
   useEffect(() => {
     const fetchProfile = async () => {
