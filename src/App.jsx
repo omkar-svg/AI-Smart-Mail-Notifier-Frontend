@@ -2,11 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./context/ProtectedRoute";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import LandingPage from "./Pages/LandingPage";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Dashboard from "./Pages/Dashboard";
-import ViewEmail from "./Pages/viewemail"
+import ViewEmail from "./Pages/viewemail";
 import AllEmails from "./Pages/AllEmails";
 
 function App() {
@@ -14,13 +17,41 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
 
+        {/* 🔥 ADD THIS */}
+        <ToastContainer
+          position="top-right"
+          autoClose={2500}
+          theme="colored"
+        />
+
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/viewemail/:id" element={<ProtectedRoute><ViewEmail /></ProtectedRoute>} /> 
-          <Route path="/allemails" element={<ProtectedRoute><AllEmails /></ProtectedRoute>} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/viewemail/:id"
+            element={
+              <ProtectedRoute>
+                <ViewEmail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/allemails"
+            element={
+              <ProtectedRoute>
+                <AllEmails />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
 
       </AuthProvider>
