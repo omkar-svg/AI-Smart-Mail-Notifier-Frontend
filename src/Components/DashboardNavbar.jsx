@@ -27,8 +27,17 @@ const DashboardNavbar = () => {
 
   const menuRef = useRef();
 
+  // ✅ FIXED CONNECT GMAIL
   const connectGmail = () => {
-    window.location.href = `${import.meta.env.VITE_API_URL}Gmail/connect`;
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Please login first");
+      return;
+    }
+
+    window.location.href =
+      `${import.meta.env.VITE_API_URL}Gmail/connect?token=${token}`;
   };
 
   useEffect(() => {
@@ -269,7 +278,7 @@ const DashboardNavbar = () => {
                 <div key={i} className="flex justify-between mb-2">
                   <span>{g.gmailAddress}</span>
                   <button onClick={() => handleToggleGmail(g.gmailAddress)}>
-                    {g.isActive}
+                    {g.isActive ? "Disable" : "Enable"}
                   </button>
                 </div>
               ))
